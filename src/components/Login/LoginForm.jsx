@@ -2,18 +2,20 @@ import { useForm } from 'react-hook-form';
 import { loginUser } from '../../api/user'
 import { useState, useEffect } from 'react'
 import { storageSave } from '../../utils/storage';
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useUser } from '../../context/UserContext'
+import { STORAGE_KEY_USER } from '../../const/storageKeys';
+
 
 const usernameConfig = {
     required: true,
     minLength: 2
 }
+
 const LoginForm = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { user, setUser } = useUser()
+    const navigate = useNavigate()
 
     //local state
     const [ loading, setLoading ] = useState(false)
@@ -21,19 +23,22 @@ const LoginForm = () => {
 
     //side effects
     useEffect(() => {
-       
-    }, []) //empty dependencies = only run once
+        if (user !== null) {
+            navigate('/profile')
+        }
+    }, [ user, navigate ]) //empty dependencies = only run once
 
     //event handlers
 const onSubmit = async ({ username }) => {
     setLoading(true);
-    const [error, user] = await loginUser(username)
+    const [error, userResponse] = await loginUser(username)
     if(error !== null) {
         setApiError(error)
     }
     //if successfully logged in, store user
-    if(user !== null) {
-        storageSave('coffe-user', user)
+    if(userResponse !== null) {
+        storageSave(STORAGE_KEY_USER, userResponse)
+        setUser(userResponse)
     }
     setLoading(false)
 
@@ -51,7 +56,6 @@ const errorMessage = (() => {
       return <span>Username is too short (min. 2)</span>
     }
 })()
-
     return (
         <>
         <h2>What's your name?</h2>
