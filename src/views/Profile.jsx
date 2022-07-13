@@ -10,7 +10,7 @@ import { STORAGE_KEY_USER } from "../const/storageKeys"
 const Profile = () => {
 
     const { user, setUser } = useUser()
-    
+
     const logout = () => {
          storageSave(STORAGE_KEY_USER, null)
          setUser(null)
@@ -21,7 +21,7 @@ const Profile = () => {
         <h1>Profile</h1>
         <ProfileHeader username={ user.username } />
         <ProfileActions logout={ logout } />
-        <ProfileOrderHistory orsers={ user.orders } />
+        <ProfileOrderHistory orders={ user.orders } />
         </>
     )
 }
