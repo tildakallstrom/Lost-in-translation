@@ -6,6 +6,7 @@ import { useUser } from "../context/UserContext"
 import { orderAdd } from "../api/order"
 import { STORAGE_KEY_USER } from './../const/storageKeys';
 import { storageSave } from "../utils/storage"
+import OrdersSummary from "../components/Orders/OrdersSummary";
 
 const COFFEES = [
     {
@@ -37,7 +38,6 @@ const Orders = () => {
 
     const handleCoffeeClicked = (coffeeId) => {
         setCoffee(COFFEES.find(coffee => coffee.id === coffeeId))
-       
     }
 
     const handleOrderClicked = async (notes) => {
@@ -77,9 +77,8 @@ const Orders = () => {
         </section>
         <section id="order-notes">
                 <OrdersForm onOrder={ handleOrderClicked } />
-            </section>
-            <p>Summary: </p>
-            { coffee &&  <p>Selected coffee: { coffee.name }</p> }
+        </section>
+            { coffee && <OrdersSummary coffee={ coffee } /> }
         </>
     )
 }

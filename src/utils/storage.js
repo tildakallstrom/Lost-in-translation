@@ -1,10 +1,15 @@
 export const storageSave = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value))
+    if (!key || typeof key !== 'string') throw new Error("storageSave: Invalid or no storage key provided!")
+    else if (!value) throw new Error("storageSave: No value provided for" + key)
+
+    sessionStorage.setItem(key, JSON.stringify(value))
 }
 
 //Store user when logged in
 export const storageRead = key => {
-    const data = localStorage.getItem(key)
+    
+    const data = sessionStorage.getItem(key)
+
     if (data) {
         return JSON.parse(data)
     }
@@ -13,5 +18,5 @@ export const storageRead = key => {
 }
 
 export const storageDelete = key => {
-    localStorage.removeItem(key)
+    sessionStorage.removeItem(key)
 }
