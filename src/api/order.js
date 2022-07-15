@@ -1,31 +1,25 @@
 import { createHeaders } from './index'
+import { API_URL } from '../const/apiURL'
 
-const apiUrl = process.env.REACT_APP_API_URL
-
-/*
-    POST - create new record
-    PATCH - update parts of the record
-    GET - Read records
-    DELETE - removes a record
-    PUT - replaces entire record
-*/
-
-export const orderAdd = async (user, order) => {
+// add translation to history
+export const addTranslation = async (user, translated) => {
     try {
-       const response = await fetch(`${apiUrl}/${user.id}`, {
-        method: 'PATCH',
-        headers: createHeaders(),
-        body: JSON.stringify({
-            username: user.username,
-            orders: [...user.orders, order]
-        })
+       const response = await fetch(`${API_URL}/${user.id}`, {
+            method: 'PATCH',
+            headers: createHeaders(),
+            body: JSON.stringify({
+                username: user.username,
+                translations: [...user.translations, translated]
+            })
        })
 
        if(!response.ok) {
-        throw new Error('Could not update the order')
+        //throw error if response is not ok
+            throw new Error('Could not update translation')
        }
 
        const result = await response.json()
+
        return [ null, result ]
     } 
     catch (error) {
@@ -33,13 +27,14 @@ export const orderAdd = async (user, order) => {
     }
 }
 
+// clear translationshistory from user with given ID
 export const orderClearHistory = async (userId) => {
     try {
-        const response = await fetch(`${apiUrl}/${userId}`, {
+        const response = await fetch(`${API_URL}/${userId}`, {
             method: 'PATCH',
             headers: createHeaders(),
             body: JSON.stringify({
-                orders: []      
+                translations: []      
             })
         })
 

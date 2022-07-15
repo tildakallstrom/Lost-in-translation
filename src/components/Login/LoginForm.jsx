@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { useUser } from '../../context/UserContext'
 import { STORAGE_KEY_USER } from '../../const/storageKeys';
 
+
 const usernameConfig = {
     required: true,
-    minLength: 2
+    minLength: 3,   // at least 3 characters
 }
 
+//loginform
 const LoginForm = () => {
     const { register, 
         handleSubmit, 
@@ -24,10 +26,10 @@ const LoginForm = () => {
     const [ loading, setLoading ] = useState(false)
     const [ apiError, setApiError ] = useState(null)
 
-    //side effects
+    // navigate to /translate if user is logged in
     useEffect(() => {
         if (user !== null) {
-            navigate('/profile')
+            navigate('/translate')
         }
     }, [ user, navigate ]) //empty dependencies = only run once
 
@@ -36,43 +38,59 @@ const LoginForm = () => {
         setLoading(true);
 
         const [error, userResponse] = await loginUser(username)
+        
         if(error !== null) {
             setApiError(error)
         }
+
         //if successfully logged in, store user
         if(userResponse !== null) {
             storageSave(STORAGE_KEY_USER, userResponse)
             setUser(userResponse)
         }
+
         setLoading(false)
     };
 
-    //render functions
+    // render functions
     const errorMessage = (() => {
         if (!errors.username) {
-            return null
+            return null // no error
         }
+
+        // missing username error
         if (errors.username.type === 'required') { 
-            return <span>Username is required.</span>
+            return (<div>
+                        <br />
+                        <span className="error">Username is required.</span>
+                    </div>)
         }
+
+        // username too short
         if (errors.username.type === 'minLength') {
-            return <span>Username is too short (min. 2)</span>
+            return (<div>
+                        <br />
+                        <span className="error">Username is too short (min. 3)</span>
+                    </div>)
         }
     })()
 
+    // render
     return (
-        <>
-        <h2>What's your name?</h2>
-            <form onSubmit={ handleSubmit(onSubmit) }>
-                 <fieldset>
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" placeholder="JaneDoe" { ...register("username", usernameConfig)} />
-                 </fieldset>
-                    { errorMessage }
-                 <button type="submit" disabled={ loading }>Continue</button>
+        <>  
+        <div className="formdiv">
+            <form className="log_in" onSubmit={ handleSubmit(onSubmit) }>
+                    <label hidden htmlFor="username">Username: </label>
+                    <input className="input" type="text" placeholder="What's your name?" maxLength={15}{ ...register("username", usernameConfig)} />
+                 
+                    <div className="buttondiv">
+                 <button className="top" type="submit" disabled={ loading }>»</button>
+                 </div>
+                 { errorMessage }
                  { loading && <p>Logging in...</p>}
                  { apiError && <p>{ apiError }</p>}
             </form>
+            </div>
         </>
     )
 }

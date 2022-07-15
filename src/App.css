@@ -1,38 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Roboto:wght@700&family=Sanchez&display=swap');
+
+body {
+  background-color: white;
+}
+
+.yellow {
+  background-color: #FFC75F;
+  padding-bottom: 5em;
+}
+.yellow3 {
+  background-color: #FFC75F;
+  padding-bottom: 10em;
+  padding-top: 2em;
+
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3 {
+  color: white;
+  font-family: 'Love Ya Like A Sister', cursive;
+}
+.blackh1 {
+  color: rgb(21, 21, 21);
+}
+nav {
+  background-color: #FFC75F;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 2px solid #8b8a8a;
+}
+ul {
+  display: inline;
+}
+nav ul li {
+  font-size: 1.2em;
+  display: inline;
+  list-style-type: none;
+  color: white;
+  font-family: 'Love Ya Like A Sister', cursive;
+  margin-right: 1em;
+}
+.translatediv2 {
+  padding-bottom: 2em;
+}
+.translatelist li {
+  text-align: left;
+  max-width: 100px;
+  margin: auto;
+  list-style-type: number;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+a {
   color: white;
 }
+p {
+  font-size: 1.2em;
+  font-family: 'Sanchez', serif;
+}
+.rightdiv {
+  margin-top: 1.5em;
+}
+.starth1 {
+  text-align: left;
+}
+.whitep {
+  color: white;
+  font-size: 1.2em;
+  text-align: left;
+}
+.grid2 {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 600px;
+  margin: auto;
+}
+.btns li {
+  list-style-type: none;
+}
+.btns {
+  padding-top: 2em;
 
-.App-link {
-  color: #61dafb;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 250px;
+  margin: auto;
+}
+.logo {
+  max-width: 200px;
+}
+.navlogo {
+  max-width: 40px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+.rightul {
+  margin-top: 1.7em;
+}
+input[type="text"] {
+  width: 400px;
+  height: 20px;
+  padding-right: 50px;
+  border: 3px solid #a9a8a8;
+  border-radius: 25px;
+  padding: 1em;
+}
+.input {
+  margin-bottom: 50px;
+  padding-top: 1em;
+}
+.top {
+  padding-bottom: 5px;
+  padding-top: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 2em;
+  background-color: purple;
+  border: none;
+  color: white;
+  border-radius: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2em;
+}
+.top:hover {
+ cursor: pointer;
+ background-color: rgb(181, 0, 181);
+}
+.buttondiv {
+  margin-left: 23.2em;
+  margin-top: -6.08em;
+}
+.loginbox {
+  background-color: white;
+  max-width: 650px;
+  margin: auto;
+  padding-top: 2em;
+  border-radius: 20px;
+  margin-top: -5em;
+  border-bottom: solid 1em purple;
+  box-shadow: 1px 1px 2px 2px lightgray;
+}
+h2 {
+  color: black;
+  padding-top: 1em;
+}
+.translatebox {
+  background-color: white;
+  max-width: 650px;
+  margin: auto;
+  border-radius: 20px;
+  border-bottom: solid 1em purple;
+  box-shadow: 1px 1px 2px 2px lightgray;
+  margin-top: -7em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.formdiv {
+  padding-bottom: 2em;
+}
+.formdiv2 {
+  padding-top: 3em;
+  padding-bottom: 0;
+}
+.translatediv {
+  background-color: white;
+  max-width: 650px;
+  margin: auto;
+  padding-top: 2em;
+  margin-top: 2em;
+  border-radius: 20px;
+  border-bottom: solid 1em purple;
+  box-shadow: 1px 1px 2px 2px lightgray;
+  margin-bottom: 2em; 
+  min-height: 155px;
+}
+
+.log_in {
+  max-width: 600px;
+  margin: auto;
+}
+.selected {
+  color: rgb(240, 239, 239);
+}
+
+.clearbtn {
+  background-color: purple;
+  color: white;
+  padding: 1em;
+  border-radius: 10px;
+}
+.clearbtn:hover {
+  background-color: rgb(167, 2, 167);
+  cursor: pointer;
 }

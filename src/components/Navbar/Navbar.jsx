@@ -1,21 +1,33 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { useUser } from "../../context/UserContext"
 
 const Navbar = () => {
     const { user } = useUser()
+    const location = useLocation()
 
+    // render navbar
     return (
         <nav>
             <ul>
-                <li>Coffe Orders</li>
+                <li><img src="img/logo.png" alt="Logo" className="navlogo" /></li>
+                <li>Lost in Translation</li>
             </ul>
             { user !== null &&
-            <ul>
-                <li>
-                    <NavLink to="/orders">Orders</NavLink>
+            <ul className="rightul">
+                <li> 
+                    {
+                        !location.pathname.includes("/translate") ?         // if not on translate-page
+                            <NavLink to="/translate">Translate</NavLink> :  // render navigate-link to translate
+                            <span className="selected">Translate</span>     // or render as text (no link)
+                    }
                 </li>
                 <li>
-                    <NavLink to="profile">Profile</NavLink>
+                    { 
+                        !location.pathname.includes("/profile") ?           // if not on profile-page
+                            <NavLink to="/profile">Profile</NavLink> :      // render profile as navigation link
+                            <span className="selected">Profile</span>       // or text (no link)
+                    }
+                   
                 </li>
             </ul>
             }

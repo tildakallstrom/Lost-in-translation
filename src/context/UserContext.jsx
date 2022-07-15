@@ -24,8 +24,7 @@ const UserProvider = ({ children }) => {
 
     return (
         <UserContext.Provider value={ state }>
-          { children }
-
+            { children }
         </UserContext.Provider>
     )
 }

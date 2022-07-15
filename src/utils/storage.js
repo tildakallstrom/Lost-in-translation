@@ -5,9 +5,8 @@ export const storageSave = (key, value) => {
     sessionStorage.setItem(key, JSON.stringify(value))
 }
 
-//Store user when logged in
+// Store user when logged in
 export const storageRead = key => {
-    
     const data = sessionStorage.getItem(key)
 
     if (data) {
